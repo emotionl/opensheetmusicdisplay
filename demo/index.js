@@ -632,7 +632,6 @@ import { TransposeCalculator } from '../src/Plugins/Transpose/TransposeCalculato
                 }
             }
         }
-        console.log(str);
         // zoom = 1.0;
 
         setSampleSpecificOptions(str, isCustom);

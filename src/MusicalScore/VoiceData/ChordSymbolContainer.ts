@@ -3,6 +3,7 @@ import {KeyInstruction} from "./Instructions/KeyInstruction";
 import {MusicSheetCalculator} from "../Graphical/MusicSheetCalculator";
 import {AccidentalEnum} from "../../Common/DataObjects/Pitch";
 import { EngravingRules } from "../Graphical/EngravingRules";
+import { formatChordKind, formatDegreesText } from "./ChordSymbolContainer.util";
 
 export class ChordSymbolContainer {
     private rootPitch: Pitch;
@@ -121,17 +122,19 @@ export class ChordSymbolContainer {
                 chordKind = customChord.alternateName;
             }
         }
+        text += formatChordKind(chordKind);
 
-        text += chordKind;
+        let degreesText: string = "";
         if (degrees.adds.length > 0) {
-            text += "(" + degrees.adds.join(",") + ")";
+            degreesText += "(" + degrees.adds.join(",") + ")";
         }
         if (degrees.alts.length > 0) {
-            text += "(alt " + degrees.alts.join(",") + ")";
+            degreesText += "(alt " + degrees.alts.join(",") + ")";
         }
         if (degrees.subs.length > 0) {
-            text += "(omit " + degrees.subs.join(",") + ")";
+            degreesText += "(omit " + degrees.subs.join(",") + ")";
         }
+        text += formatDegreesText(degreesText);
 
         // bass
         if (chordSymbol.BassPitch) {
